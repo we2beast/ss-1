@@ -1,10 +1,7 @@
 spring:
-
   security:
     user:
       password: default-pass
-
-
   jpa:
     properties:
       hibernate:

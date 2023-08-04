@@ -1,12 +1,10 @@
 package com.poluhin.ss.demo.service;
 
-import com.poluhin.ss.demo.domain.entity.*;
-import com.poluhin.ss.demo.domain.model.*;
-import com.poluhin.ss.demo.repository.*;
-import lombok.*;
-import org.springframework.stereotype.*;
-
-import static org.springframework.data.mapping.Alias.ofNullable;
+import com.poluhin.ss.demo.domain.entity.ResourceObjectEntity;
+import com.poluhin.ss.demo.domain.model.ResourceObject;
+import com.poluhin.ss.demo.repository.ResourceObjectRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
