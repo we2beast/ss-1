@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -21,6 +22,7 @@ import javax.sql.DataSource;
 import static org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType.H2;
 
 @Configuration
+@EnableMethodSecurity
 @EnableWebSecurity
 public class WebSecurityConfig {
 
@@ -56,8 +58,15 @@ public class WebSecurityConfig {
                 .roles("USER")
                 .build();
 
+        UserDetails admin = User.builder()
+                .username("admin")
+                .password(bCryptPasswordEncoder().encode("password"))
+                .roles("ADMIN")
+                .build();
+
         JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
         jdbcUserDetailsManager.createUser(user);
+        jdbcUserDetailsManager.createUser(admin);
 
         return jdbcUserDetailsManager;
     }
